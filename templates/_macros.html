@@ -1,0 +1,21 @@
+<!-- input -->
+{% macro input(name, placeholder='', type='text', classes='', id='', required='false') %}
+<input type="{{ type }}" id="{{ id }}" name="{{ name }}" placeholder="{{ placeholder }}"
+    class="block rounded-lg mb-6 text-base/8 p-2 min-w-full md:min-w-80 {{ classes }}" required="{{ required }}" />
+{% endmacro %}
+
+<!-- label -->
+{% macro label(whatFor, classes='', text='') %}
+<label for="{ {whatFor }}" class="block mb-2 {{ classes }}">
+    {{ text }}:
+</label>
+{% endmacro %}
+
+<!-- button -->
+{% macro button(label, type='button', classes='') %}
+<button type="{{ type }}"
+    class="bg-green-800 text-white px-5 py-3 rounded-lg hover:bg-green-950 md:min-w-20 {{ classes }}">
+    {{ label }}
+</button>
+{% endmacro %}
+

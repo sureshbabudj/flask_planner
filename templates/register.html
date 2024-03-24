@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% from "_macros.html" import input, label, button %}
+
+{% block title %}Register - My Planner App{% endblock %}
+
+{% block content %}
+<div class="w-fit border-solid border-gray-300 border rounded-3xl bg-gray-200 p-3 flex flex-col-reverse md:flex-row items-stretch">
+    <div class="px-10 py-5 md:px-20 md:py-10">
+        <h1 class="font-bold text-3xl/loose mb-8">Register</h1>
+
+        <form hx-post="/register" class="block py-5">
+
+            {{ label(whatFor='name', text='Name') }}
+            {{ input(name='name', type='text', placeholder='Enter Your Name', id='name', required='true') }}
+
+            {{ label(whatFor='email', text='Email') }}
+            {{ input(name='email', type='email', placeholder='Enter Your Email', id='email', required='true') }}
+
+            {{ label(whatFor='password', text='Password') }}
+            {{ input(name='password', type='password', placeholder='Enter Password', id='password', required='true') }}
+
+            {{ button('Register', type='submit') }}
+
+            <div class="text-red-600 my-5" id="errors"></div>
+        </form>
+
+        <div class="py-2 my-5 border-t-white border-t">
+            <p class="text-lg/7 mt-5">Already have an account?
+                <a href="{{ url_for('home') }}"
+                    class="hover:bg-green-800 hover:text-white inline-block px-2 rounded-md">Login here</a></p>
+        </div>
+    </div>
+    <div class="flex-auto md:w-[400px] h-48 md:h-auto rounded-3xl bg-cover bg-center bg-[url('https://images.pexels.com/photos/6289051/pexels-photo-6289051.jpeg?auto=compress&cs=tinysrgb&w=480&h=720')]">
+    </div>
+</div>
+
+{% endblock %}

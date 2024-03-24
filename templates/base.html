@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My Planner App{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="h-full">
+    <div class="flex flex-col items-center justify-center h-full ">
+        <div>
+            <header class="text-3xl/relaxed text-green-800 font-extrabold self-start mb-5 flex flex-row items-center justify-center md:justify-start">
+                <div class=" bg-green-800 text-white p-3 rounded-full me-3">
+                    <svg class="stroke-white size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                </div>
+                Planner
+            </header>
+            {% block content %}
+            <!-- Individual page content will go here -->
+            {% endblock %}
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/htmx.org"></script>
+    <script>
+        document.body.addEventListener('htmx:beforeOnLoad', function (evt) {
+            if (evt.detail.xhr.status === 422) {
+                evt.detail.shouldSwap = true;
+                evt.detail.isError = false;
+            }
+        });
+    </script>
+</body>
+
+</html>

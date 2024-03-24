@@ -1,0 +1,66 @@
+{% extends 'dash_base.html' %}
+
+{% block title %}Planner - My Planner App{% endblock %}
+
+{% block content %}
+<div class="flex flex-row justify-between p-3 bg-gradient-to-t from-[#ddf4ff] to-[#d6eeff] items-center">
+    <header
+        class="text-xl/relaxed text-sky-700 font-extrabold self-start flex flex-row items-center justify-center md:justify-start">
+        <div class=" bg-sky-700 text-white p-2 rounded-full me-3">
+            <svg class="stroke-white size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+        </div>
+        Planner
+    </header>
+    <div>
+        <button type="button"
+            class="bg-white drop-shadow text-blue-950 px-5 py-2 rounded hover:bg-blue-300 hover:text-white me-1">Day</button>
+        <button type="button"
+            class="bg-white drop-shadow text-blue-950 px-5 py-2 rounded hover:bg-blue-300 hover:text-white me-1">Week</button>
+        <button type="button"
+            class="bg-white drop-shadow text-blue-950 px-5 py-2 rounded hover:bg-blue-300 hover:text-white">Month</button>
+    </div>
+    <div class="flex flex-row">
+        <button type="button"
+            class="flex items-center hover:bg-white drop-shadow hover:text-blue-950 px-5 py-2 rounded bg-green-400 text-white me-2 font-bold text-lg/loose ">
+            <span
+                class="rounded-full inline-block  w-8 h-8  bg-white text-blue-950 me-3 font-extrabold text-2xl/tight">+</span>Create
+            Plan</button>
+        <button type="button" hx-get="/logout"
+            class="flex items-center hover:bg-white drop-shadow hover:text-blue-950 px-5 py-2 rounded bg-red-400 text-white font-bold text-lg/loose">
+            <span
+                class="rounded-full inline-block w-8 h-8 bg-white me-3">
+                <svg class="my-2 mx-1"
+                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M15 3h6v18h-6M10 17l5-5-5-5M13.8 12H3" />
+                </svg></span>Logout</button>
+    </div>
+</div>
+<table class="table-auto w-full border-collapse">
+    <thead class="bg-blue-200 font-bold text-white-900 drop-shadow-lg">
+        <th class="p-3 border-r border-blue-300 border-l border-l-blue-700">GMT</th>
+        {% for date in week_dates %}
+        <th class="p-3 border-r border-blue-300 border-l border-l-blue-700">{{ date.strftime('%A, %B %d') }}</th>
+        {% endfor %}
+    </thead>
+    <tbody class="border-l-2 border-l-white">
+        {% for hour in range(24) %}
+        <tr>
+            <td class="p-3 bg-blue-100">{{ '%02d:00' | format(hour) }}</td>
+            {% for date in week_dates %}
+            <td class="border border-solid border-l-blue-200 border-r-blue-300 border-t-blue-200 border-b-blue-300">
+                <a class="p-2 text-gray-400" onclick="alert('&#128529; Functionality - In Progress')" href="#">Click here to create a Plan...</a>
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
